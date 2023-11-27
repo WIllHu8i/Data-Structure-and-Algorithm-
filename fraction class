@@ -1,0 +1,58 @@
+def gcdd(n,m):
+    while n%m!=0:
+        n,m = m,n%m
+    return m
+
+class fraction:
+    def __init__(self, num, den):
+        gcd = gcdd(num,den)
+        self.num = num/gcd
+        self.den = den/gcd
+    def __str__(self):
+        
+        return f"{self.num}/{self.den}"
+    def __add__(self,otherfraction):
+        new_num = self.num*otherfraction.den+self.den*otherfraction.num
+        new_den = self.den*otherfraction.den
+        return( fraction(new_num,new_den))
+    def __eq__(self,otherfraction):
+ 
+        if self.num == otherfraction.num and self.den==otherfraction.den:
+            return True
+        else:
+            return False
+    def __sub__(self,otherfraction):
+        new_num = self.num*otherfraction.den-self.den*otherfraction.num
+        new_den = self.den*otherfraction.den
+        return( fraction(new_num,new_den))
+
+    def __mul__(self,otherfraction):
+        new_num = self.num*otherfraction.num
+        new_den = self.den*otherfraction.den
+        return(fraction(new_num,new_den))
+    def __truediv__(self,otherfraction):
+        new_num = self.num*otherfraction.den
+        new_den = self.den*otherfraction.num
+        return(fraction(new_num,new_den))
+    def __le__(self,otherfraction):
+        if self.num*otherfraction.den<= self.den*otherfraction.num:
+            return True
+        else:
+            return False
+    def __lt__(self,otherfraction):
+        if self.num*otherfraction.den< self.den*otherfraction.num:
+            return True
+        else:
+            return False  
+    def __be__(self,otherfraction):
+        if self.num*otherfraction.den>= self.den*otherfraction.num:
+            return True
+        else:
+            return False
+    def __bt__(self,otherfraction):
+        if self.num*otherfraction.den> self.den*otherfraction.num:
+            return True
+        else:
+            return False
+
+print(fraction(3,2)>fraction(2,4))
